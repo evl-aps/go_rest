@@ -14,7 +14,7 @@ func main() {
 
 	e := echo.New()
 
-	e.File("/", "public/index.html")
+	e.File("/", "../frontend/public/index.html")
 	e.GET("/tasks", handlers.GetTasks(db))
 	e.PUT("/tasks", handlers.PutTask(db))
 	e.DELETE("/tasks/:id", handlers.DeleteTask(db))

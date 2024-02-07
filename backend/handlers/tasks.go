@@ -13,12 +13,14 @@ type H map[string]interface{}
 
 func GetTasks(db *sql.DB) echo.HandlerFunc {
 	return func(c echo.Context) error {
+		c.Response().Header().Set("Access-Control-Allow-Origin", "*")
 		return c.JSON(http.StatusOK, models.GetTasks(db))
 	}
 }
 
 func PutTask(db *sql.DB) echo.HandlerFunc {
 	return func(c echo.Context) error {
+		c.Response().Header().Set("Access-Control-Allow-Origin", "*")
 		var task models.Task
 
 		c.Bind(&task)
@@ -37,6 +39,7 @@ func PutTask(db *sql.DB) echo.HandlerFunc {
 
 func DeleteTask(db *sql.DB) echo.HandlerFunc {
 	return func(c echo.Context) error {
+		c.Response().Header().Set("Access-Control-Allow-Origin", "*")
 		id, _ := strconv.Atoi(c.Param("id"))
 
 		_, err := models.DeleteTask(db, id)
